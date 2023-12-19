@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .addFilterBefore(
                         jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class
-                );
+                ).exceptionHandling(customizer -> customizer.accessDeniedPage("/errors/accessDenied"));
         return http.build();
     }
     @Bean

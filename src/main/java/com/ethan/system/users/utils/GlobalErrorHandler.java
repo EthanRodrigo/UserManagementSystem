@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
+import java.nio.file.AccessDeniedException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -39,7 +40,10 @@ public class GlobalErrorHandler {
     public Map<String, Object> handleExpiredJwtException(ExpiredJwtException exception, WebRequest request){
         return createExceptionMessage(exception.getLocalizedMessage(), HttpStatus.FORBIDDEN, request);
     }
-
+    @ExceptionHandler(AccessDeniedException.class)
+    public Map<String, Object> handleAccessDeniedException(AccessDeniedException exception, WebRequest request){
+        return createExceptionMessage(exception.getLocalizedMessage(), HttpStatus.FORBIDDEN, request);
+    }
 
     /* Creating a customized message for an error
     * */
