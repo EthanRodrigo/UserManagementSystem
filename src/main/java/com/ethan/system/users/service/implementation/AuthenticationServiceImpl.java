@@ -12,6 +12,7 @@ import com.ethan.system.users.service.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +37,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         return userRepository.save(user);
     }
-    public JWTAuthenticationResponse signin(SignInRequest request){
+    public JWTAuthenticationResponse login(SignInRequest request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
         var user = userRepository.findByEmail(
-                request.getEmail()).orElseThrow(() -> new IllegalArgumentException("Invalid email or password")
+                request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found")
         );
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), user);

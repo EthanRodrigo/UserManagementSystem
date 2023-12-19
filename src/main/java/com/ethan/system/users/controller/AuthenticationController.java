@@ -24,11 +24,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signup(request));
     }
     @PostMapping("/login")
-    private ResponseEntity<JWTAuthenticationResponse> signinUser(@RequestBody SignInRequest request){
-        return ResponseEntity.ok(authenticationService.signin(request));
+    private ResponseEntity<JWTAuthenticationResponse> userLogin(@RequestBody SignInRequest request){
+        return ResponseEntity.ok(authenticationService.login(request));
     }
     @PostMapping("/refresh")
-    private ResponseEntity<JWTAuthenticationResponse> signinUser(@RequestBody RefreshTokenRequest request){
+    private ResponseEntity<JWTAuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest request){
         return ResponseEntity.ok(authenticationService.refreshToken(request));
     }
 }

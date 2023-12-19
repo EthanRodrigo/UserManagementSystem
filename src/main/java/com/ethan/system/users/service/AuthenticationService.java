@@ -8,6 +8,6 @@ import com.ethan.system.users.model.User;
 
 public interface AuthenticationService {
     User signup(SignUpRequest request);
-    JWTAuthenticationResponse signin(SignInRequest request);
+    JWTAuthenticationResponse login(SignInRequest request);
     JWTAuthenticationResponse refreshToken(RefreshTokenRequest request);
 }

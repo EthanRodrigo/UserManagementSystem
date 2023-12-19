@@ -1,4 +1,4 @@
-package com.ethan.system.users.config;
+package com.ethan.system.users.config.security;
 
 import com.ethan.system.users.config.JWTAuthenticationFilter;
 import com.ethan.system.users.model.Role;
