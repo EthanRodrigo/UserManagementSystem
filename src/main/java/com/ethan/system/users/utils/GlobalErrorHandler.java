@@ -36,10 +36,6 @@ public class GlobalErrorHandler {
     public Map<String, Object> handleAuthenticationServiceException(AuthenticationException exception, WebRequest request){
         return createExceptionMessage(exception.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
-    @ExceptionHandler(ExpiredJwtException.class)
-    public Map<String, Object> handleExpiredJwtException(ExpiredJwtException exception, WebRequest request){
-        return createExceptionMessage(exception.getLocalizedMessage(), HttpStatus.FORBIDDEN, request);
-    }
     @ExceptionHandler(AccessDeniedException.class)
     public Map<String, Object> handleAccessDeniedException(AccessDeniedException exception, WebRequest request){
         return createExceptionMessage(exception.getLocalizedMessage(), HttpStatus.FORBIDDEN, request);

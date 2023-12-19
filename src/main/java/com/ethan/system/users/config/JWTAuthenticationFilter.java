@@ -4,6 +4,7 @@ import com.ethan.system.users.service.JWTService;
 import com.ethan.system.users.service.UserService;
 import com.ethan.system.users.utils.GlobalErrorHandler;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -61,7 +62,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
             filterChain.doFilter(request, response);
-        }catch (ExpiredJwtException exception){
+        }catch (Exception exception){
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.getWriter().println(exception.getMessage());
             response.setContentType("application/json");
