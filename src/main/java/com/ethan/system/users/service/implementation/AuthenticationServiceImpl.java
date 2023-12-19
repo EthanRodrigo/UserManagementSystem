@@ -27,13 +27,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JWTService jwtService;
 
     public User signup(SignUpRequest request){
-        User user = new User();
-
-        user.setEmail(request.getEmail());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.USER);
+        User user = User.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.USER)
+                .build();
 
         return userRepository.save(user);
     }

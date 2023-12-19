@@ -1,5 +1,6 @@
 package com.ethan.system.users.model;
 
+import lombok.Builder;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Document (collection = "user")
 @Data
+@Builder
 public class User implements UserDetails {
     @Id
     private ObjectId id;
